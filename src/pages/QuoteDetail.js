@@ -42,7 +42,7 @@ const QuoteDetail = () => {
   }
   return (
     <Fragment>
-      <h1>QuoteDetail Page</h1>
+      <h1>Story Detail</h1>
       <HighlightedQuote
         text={loadedQuotes.text}
         author={loadedQuotes.author}
