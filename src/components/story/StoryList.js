@@ -1,20 +1,20 @@
 import { Fragment } from "react";
 import { useHistory, useLocation } from "react-router";
 
-import QuoteItem from "./QuoteItem";
-import classes from "./QuoteList.module.css";
+import StoryItem from "./StoryItem";
+import classes from "./StoryList.module.css";
 
-const sortQuotes = (quotes, ascening) => {
-  return quotes.sort((quoteA, quoteB) => {
+const sortStories = (stories, ascening) => {
+  return stories.sort((storyA, storyB) => {
     if (ascening) {
-      return quoteA.id > quoteB.id ? 1 : -1;
+      return storyA.id > storyB.id ? 1 : -1;
     } else {
-      return quoteA.id > quoteB.id ? -1 : 1;
+      return storyA.id > storyB.id ? -1 : 1;
     }
   });
 };
 
-const QuoteList = (props) => {
+const StoryList = (props) => {
   const history = useHistory();
   const location = useLocation();
 
@@ -22,7 +22,7 @@ const QuoteList = (props) => {
 
   const isSortingAscending = queryParams.get("sort") === "asc";
 
-  const sortedQuotes = sortQuotes(props.quotes, isSortingAscending)
+  const sortedStories = sortStories(props.stories, isSortingAscending)
 
   const changeSortingHandler = () => {
     history.push({
@@ -38,12 +38,12 @@ const QuoteList = (props) => {
         </button>
       </div>
       <ul className={classes.list}>
-        {sortedQuotes.map((quote) => (
-          <QuoteItem
-            key={quote.id}
-            id={quote.id}
-            author={quote.author}
-            text={quote.text}
+        {sortedStories.map((story) => (
+          <StoryItem
+            key={story.id}
+            id={story.id}
+            author={story.author}
+            text={story.text}
           />
         ))}
       </ul>
@@ -51,4 +51,4 @@ const QuoteList = (props) => {
   );
 };
 
-export default QuoteList;
+export default StoryList;

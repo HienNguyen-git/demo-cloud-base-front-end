@@ -1,11 +1,10 @@
 import { Fragment, useRef, useState } from "react";
 import { Prompt } from "react-router";
-
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import classes from "./QuoteForm.module.css";
+import classes from "./StoryForm.module.css";
 
-const QuoteForm = (props) => {
+const StoryForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
 
   const authorInputRef = useRef();
@@ -19,7 +18,7 @@ const QuoteForm = (props) => {
 
     // optional: Could validate here
 
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+    props.onAddStory({ author: enteredAuthor, text: enteredText });
   }
 
   const formFocusedHandler = () => {
@@ -67,4 +66,4 @@ const QuoteForm = (props) => {
   );
 };
 
-export default QuoteForm;
+export default StoryForm;

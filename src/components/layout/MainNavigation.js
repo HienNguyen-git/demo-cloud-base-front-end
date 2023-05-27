@@ -11,12 +11,12 @@ const MainNavigation = () => {
       <nav className={classes.nav}>
         <ul>
           <li>
-            <NavLink to="/quotes" activeClassName={classes.active}>
+            <NavLink to="/stories" activeClassName={classes.active}>
               Stories
             </NavLink>
           </li>
           <li>
-            <NavLink to="/new-quote" activeClassName={classes.active}>
+            <NavLink to="/new-story" activeClassName={classes.active}>
               Tell us your story
             </NavLink>
           </li>

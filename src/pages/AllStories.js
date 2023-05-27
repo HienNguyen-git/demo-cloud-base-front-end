@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 
-import QuoteList from "../components/quotes/QuoteList";
+import StoryList from "../components/story/StoryList";
 import useHttp from "../hooks/use-http";
-import { getAllQuotes } from "../lib/api";
+import { getAllStories } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import NoQuotesFound from "../components/quotes/NoQuotesFound";
+import NoStoriesFound from "../components/story/NoStoriesFound";
 
 
-const AllQuotes = () => {
+const AllStories = () => {
   const {
     sendRequest,
     status,
-    data: loadedQuotes,
+    data: loadedStories,
     error,
-  } = useHttp(getAllQuotes, true);
+  } = useHttp(getAllStories, true);
 
   useEffect(() => {
     sendRequest();
@@ -31,9 +31,9 @@ const AllQuotes = () => {
     return <p className="centered focused">{error}</p>;
   }
 
-  if (status === "completed" && (loadedQuotes.length === 0 || !loadedQuotes))
-    return <NoQuotesFound />;
-  return <QuoteList quotes={loadedQuotes} />;
+  if (status === "completed" && (loadedStories.length === 0 || !loadedStories))
+    return <NoStoriesFound />;
+  return <StoryList stories={loadedStories} />;
 };
 
-export default AllQuotes;
+export default AllStories;

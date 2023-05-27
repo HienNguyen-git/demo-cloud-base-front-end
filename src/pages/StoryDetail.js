@@ -2,30 +2,30 @@ import { Fragment, useEffect } from "react";
 import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
-import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import NoQuotesFound from "../components/quotes/NoQuotesFound";
+import HighlightedStory from "../components/story/HighlightedStory";
+import NoStoriesFound from "../components/story/NoStoriesFound";
 import useHttp from "../hooks/use-http";
-import { getSingleQuote } from "../lib/api";
+import { getSingleStory } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 
 
-const QuoteDetail = () => {
+const StoryDetail = () => {
   const match = useRouteMatch();
   const params = useParams();
 
-  const { quoteID } = params;
+  const { storyID } = params;
 
   const {
     sendRequest,
     status,
-    data: loadedQuotes,
+    data: loadedStories,
     error,
-  } = useHttp(getSingleQuote, true);
+  } = useHttp(getSingleStory, true);
 
   useEffect(() => {
-    sendRequest(quoteID);
-  }, [sendRequest, quoteID]);
+    sendRequest(storyID);
+  }, [sendRequest, storyID]);
 
   if (status === "pending")
     return (
@@ -37,16 +37,16 @@ const QuoteDetail = () => {
   if (error) {
     return <p className="centered">{error}</p>;
   }
-  if (!loadedQuotes.text) {
-    return <NoQuotesFound />;
+  if (!loadedStories.text) {
+    return <NoStoriesFound />;
   }
   return (
     <Fragment>
       <h1>Story Detail</h1>
-      <HighlightedQuote
-        text={loadedQuotes.text}
-        author={loadedQuotes.author}
-        id={loadedQuotes.id}
+      <HighlightedStory
+        text={loadedStories.text}
+        author={loadedStories.author}
+        id={loadedStories.id}
       />
       <Route path={match.path} exact>
         <div className="centered">
@@ -62,4 +62,4 @@ const QuoteDetail = () => {
   );
 };
 
-export default QuoteDetail;
+export default StoryDetail;

@@ -4,9 +4,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
-const AllQuotes = React.lazy(() => import("./pages/AllQuotes"));
-const NewQuote = React.lazy(() => import("./pages/NewQuote"));
-const QuoteDetail = React.lazy(() => import("./pages/QuoteDetail"));
+const AllStories = React.lazy(() => import("./pages/AllStories"));
+const NewStory = React.lazy(() => import("./pages/NewStory"));
+const StoryDetail = React.lazy(() => import("./pages/StoryDetail"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -21,16 +21,16 @@ function App() {
       >
         <Switch>
           <Route path="/" exact>
-            <Redirect to="quotes" />
+            <Redirect to="stories" />
           </Route>
-          <Route path="/quotes" exact>
-            <AllQuotes />
+          <Route path="/stories" exact>
+            <AllStories />
           </Route>
-          <Route path="/quotes/:quoteID">
-            <QuoteDetail />
+          <Route path="/stories/:storyID">
+            <StoryDetail />
           </Route>
-          <Route path="/new-quote">
-            <NewQuote />
+          <Route path="/new-story">
+            <NewStory />
           </Route>
           <Route path="*">
             <NotFound />

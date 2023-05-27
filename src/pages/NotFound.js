@@ -1,7 +1,7 @@
 const NotFound = () => {
   return (
     <div className="centered"   >
-      <p>Quote not found</p>
+      <p>Story not found</p>
     </div>
   );
 };

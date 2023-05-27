@@ -21,7 +21,7 @@ const NewCommentForm = (props) => {
   const submitFormHandler = (event) => {
     event.preventDefault();
     const enteredText = commentTextRef.current.value;
-    sendRequest({ commentData: { text: enteredText }, quoteId: props.quoteID });
+    sendRequest({ commentData: { text: enteredText }, storyId: props.storyID });
   };
 
   return (

@@ -11,7 +11,7 @@ const Comments = () => {
   const [isAddingComment, setIsAddingComment] = useState(false);
   const params = useParams();
 
-  const quoteID = params.quoteID;
+  const storyID = params.storyID;
 
   const {
     sendRequest,
@@ -24,8 +24,8 @@ const Comments = () => {
   };
 
   useEffect(() => {
-    sendRequest(quoteID);
-  }, [quoteID, sendRequest]);
+    sendRequest(storyID);
+  }, [storyID, sendRequest]);
 
   let comments;
 
@@ -46,8 +46,8 @@ const Comments = () => {
   }
 
   const onAddedCommentHandler = useCallback(()=>{
-    sendRequest(quoteID)
-  },[sendRequest,quoteID])
+    sendRequest(storyID)
+  },[sendRequest,storyID])
 
   return (
     <section className={classes.comments}>
@@ -60,7 +60,7 @@ const Comments = () => {
       {isAddingComment && (
         <NewCommentForm
           onAddedComment={onAddedCommentHandler}
-          quoteID={quoteID}
+          storyID={storyID}
         />
       )}
       {comments}

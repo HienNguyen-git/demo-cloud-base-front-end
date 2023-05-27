@@ -1,47 +1,45 @@
 const FIREBASE_DOMAIN = 'https://my-aws-db-default-rtdb.asia-southeast1.firebasedatabase.app/';
 
-export async function getAllQuotes() {
-  const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`);
+export async function getAllStories() {
+  const response = await fetch(`${FIREBASE_DOMAIN}/stories.json`);
   const data = await response.json();
   console.log(data)
   if (!response.ok) {
-    throw new Error(data.message || 'Could not fetch quotes.');
+    throw new Error(data.message || 'Could not fetch stories.');
   }
 
-  const transformedQuotes = [];
+  const transformedStories = [];
 
   for (const key in data) {
-    const quoteObj = {
+    const obj = {
       id: key,  
       ...data[key],
     };
 
-    transformedQuotes.push(quoteObj);
+    transformedStories.push(obj);
   }
 
-  return transformedQuotes;
+  return transformedStories;
 }
 
-export async function getSingleQuote(quoteId) {
-  const response = await fetch(`${FIREBASE_DOMAIN}/quotes/${quoteId}.json`);
+export async function getSingleStory(storyId) {
+  const response = await fetch(`${FIREBASE_DOMAIN}/stories/${storyId}.json`);
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || 'Could not fetch quote.');
+    throw new Error(data.message || 'Could not fetch story.');
   }
 
-  const loadedQuote = {
-    id: quoteId,
+  return {
+    id: storyId,
     ...data,
   };
-
-  return loadedQuote;
 }
 
-export async function addQuote(quoteData) {
-  const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`, {
+export async function addStory(storyData) {
+  const response = await fetch(`${FIREBASE_DOMAIN}/stories.json`, {
     method: 'POST',
-    body: JSON.stringify(quoteData),
+    body: JSON.stringify(storyData),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -50,14 +48,14 @@ export async function addQuote(quoteData) {
   console.log(response.ok)
 
   if (!response.ok) {
-    throw new Error(data.message || 'Could not create quote.');
+    throw new Error(data.message || 'Could not create story.');
   }
 
   return null;
 }
 
 export async function addComment(requestData) {
-  const response = await fetch(`${FIREBASE_DOMAIN}/comments/${requestData.quoteId}.json`, {
+  const response = await fetch(`${FIREBASE_DOMAIN}/comments/${requestData.storyId}.json`, {
     method: 'POST',
     body: JSON.stringify(requestData.commentData),
     headers: {
@@ -74,8 +72,8 @@ export async function addComment(requestData) {
   return { commentId: data.name };
 }
 
-export async function getAllComments(quoteId) {
-  const response = await fetch(`${FIREBASE_DOMAIN}/comments/${quoteId}.json`);
+export async function getAllComments(storyId) {
+  const response = await fetch(`${FIREBASE_DOMAIN}/comments/${storyId}.json`);
 
   const data = await response.json();
 
