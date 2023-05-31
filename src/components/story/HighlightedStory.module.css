@@ -8,11 +8,17 @@
   max-width: 40rem;
 }
 
-.story p {
+.story .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.story .text {
   font-size: 2.5rem;
 }
 
-.story figcaption {
+.story .author {
   font-style: italic;
   font-size: 1.5rem;
   text-align: right;
