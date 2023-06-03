@@ -16,8 +16,6 @@ const StoryForm = (props) => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    // optional: Could validate here
-
     props.onAddStory({ author: enteredAuthor, text: enteredText });
   }
 

@@ -7,11 +7,11 @@ import useHttp from "../../hooks/use-http";
 import { getAllComments } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import CommentsList from "./CommentsList";
-const Comments = () => {
+const Comments = (props) => {
   const [isAddingComment, setIsAddingComment] = useState(false);
   const params = useParams();
 
-  const storyID = params.storyID;
+  const storyID = props.storyID ? props.storyID : params.storyID;
 
   const {
     sendRequest,
@@ -51,19 +51,12 @@ const Comments = () => {
 
   return (
     <section className={classes.comments}>
-      <h2>User Comments</h2>
-      {!isAddingComment && (
-        <button className="btn" onClick={startAddCommentHandler}>
-          Add a Comment
-        </button>
-      )}
-      {isAddingComment && (
-        <NewCommentForm
+      <h3>💬 Comments</h3>
+      {comments}
+      <NewCommentForm
           onAddedComment={onAddedCommentHandler}
           storyID={storyID}
-        />
-      )}
-      {comments}
+      />
     </section>
   );
 };

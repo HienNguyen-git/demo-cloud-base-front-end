@@ -22,6 +22,7 @@ const NewCommentForm = (props) => {
     event.preventDefault();
     const enteredText = commentTextRef.current.value;
     sendRequest({ commentData: { text: enteredText }, storyId: props.storyID });
+    commentTextRef.current.value = "";
   };
 
   return (
@@ -33,8 +34,7 @@ const NewCommentForm = (props) => {
       )}
 
       <div className={classes.control} onSubmit={submitFormHandler}>
-        <label htmlFor="comment">Your Comment</label>
-        <textarea id="comment" rows="5" ref={commentTextRef}></textarea>
+        <textarea id="comment" ref={commentTextRef} placeholder={"Enter your comment...."}></textarea>
       </div>
       <div className={classes.actions}>
         <button className="btn">Add Comment</button>

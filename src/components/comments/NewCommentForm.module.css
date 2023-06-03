@@ -16,28 +16,25 @@
 
 .control {
   margin-bottom: 0.5rem;
+  display: flex;
 }
 
-.control label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-}
 
 .control textarea {
   font: inherit;
-  padding: 0.35rem;
-  border-radius: 4px;
-  background-color: #f0f0f0;
-  border: 1px solid #c1d1d1;
+  border-radius: 15px;
+  background-color: #3a3b3c;
+  border: 0 solid #c1d1d1;
   display: block;
   width: 100%;
   font-size: 1.25rem;
+  justify-content: center;
+  padding: 0.5rem;
 }
 
 .control textarea:focus {
-  background-color: #cbf8f8;
-  outline-color: teal;
+  background-color: #ededed;
+  outline-color: #ffffff;
 }
 
 .actions button {

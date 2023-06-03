@@ -1,7 +1,12 @@
 .comments {
-  text-align: center;
+  text-align: left;
+  background-color: #242526;
+  color: #ced0d4;
+  padding: 1rem;
+  border-radius: 15px;
 }
 
 .comments > button {
   font-size: 1.25rem;
 }
+
